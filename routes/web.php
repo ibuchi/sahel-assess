@@ -1,12 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::middleware('guest')->group(function () {
     Route::view('/', 'welcome')->name('welcome');
     Route::view('register', 'auth.register')->name('register');
     Route::view('login', 'auth.login')->name('login');
+    Route::get('/logout', fn () => redirect('/'));
 });
 
 Route::middleware(['auth'])->group(function () {

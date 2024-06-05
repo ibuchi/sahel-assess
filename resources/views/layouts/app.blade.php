@@ -16,20 +16,12 @@
 </head>
 
 <body class="h-full">
-    <div id="app" class="h-full bg-gray-100 overflow-scroll bg-green-50">
-        {{-- <div class=" py-5 flex justify-end px-20  bg-green-900 shadow-sm">
-            <form action="{{ route('logout') }}" method="POST" class="mx-20">
-                @csrf
-                <a href="javascript:void(0)" onclick="logout(this)">logout</a>
-            </form>
-        </div> --}}
+    <div id="app" class="h-full overflow-scroll bg-green-50">
         <x-navbar />
         <main class="flex items-center justify-center w-full">
             {{ $slot }}
         </main>
     </div>
-
-    {{-- <input type="hidden" id="access_token" value="{{ access_token() }}"> --}}
 
     @vite(['resources/js/frontend.js'])
 </body>

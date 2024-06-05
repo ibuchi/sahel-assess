@@ -8,16 +8,26 @@ import CreateModal from './CreateModal.vue';
 
 const openModal = ref(false);
 const openModal2 = ref(false);
+const selectedService = ref(null);
 
 const {
     services,
     getService,
     createService,
+    updateService,
     deleteService,
 } = useService()
 
+const toggleModal = () => {
+    openModal.value = false;
+}
+
 const toggleModal2 = () => {
     openModal2.value = false;
+}
+
+const selectService = (service) => {
+    selectedService.value = service
 }
 
 const {
@@ -25,17 +35,27 @@ const {
 } = useProfile()
 
 
+const isServicesEmpty = computed(() => {
+      return services.value.length === 0;
+    });
 
 
 </script>
 <template>
+    <Modal :openModal="openModal" :type="'service'" :data="selectedService" @check="toggleModal" @submitForm="updateService" />
+
     <div class="flex  flex-col justify-center px-6 py-12 lg:px-8 w-full ">
-        <CreateModal :openModal2="openModal2" :type="'service'" :data="profile" @check2="toggleModal2" @submitForm="createService"/>
+        <CreateModal :openModal2="openModal2" :type="'service'" :data="profile" @check2="toggleModal2"
+            @submitForm="createService" />
         <div class="flex justify-between">
-        <h1 class="text-gray-700 font-bold text-2xl">Services</h1>
-        <button @click="openModal2 = true" type="button" class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 ">+ Create Service</button>
-       </div>
-        <div v-if="services.data?.length !== 0" class="grid grid-cols-1 md:grid-cols-4 gap-5 px-4 mt-8  sm:px-8 bg-gray-50 rounded-xl shadow-md " style="padding: 20px;">
+            <h1 class="text-gray-700 font-bold text-2xl">Services</h1>
+            <button :disabled="isServicesEmpty" @click="openModal2 = true" type="button"
+                class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 ">+
+                Create Service</button>
+        </div>
+        <div v-if="services.data?.length !== 0"
+            class="grid grid-cols-1 md:grid-cols-4 gap-5 px-4 mt-8  sm:px-8 bg-gray-50 rounded-xl shadow-md "
+            style="padding: 20px;">
             <div v-for="service in services.data" class="bg-white rounded-xl p-4 shadow-xl mt-4">
                 <div class="flex flex-col justify-center items-center">
                     <img src="https://cdn3d.iconscout.com/3d/premium/thumb/upload-social-media-post-4291893-3569926.png"
@@ -44,7 +64,7 @@ const {
                     <p class="font-semibold text-sm text-gray-400 text-center">{{ service?.email }}<br> {{
                 service?.created_at }}</p>
                     <div class="space-x-4">
-                        <button
+                        <button @click="openModal = true, selectService(service)"
                             class=" mt-4 bg-green-600 hover:bg-green-700 shadow-xl text-xs text-white font-bold py-2 px-4 rounded">
                             Edit
                         </button>

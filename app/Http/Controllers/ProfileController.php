@@ -10,6 +10,13 @@ use Illuminate\Support\Str;
 
 class ProfileController extends Controller
 {
+    public function index()
+    {
+        return Response::api([
+            'message' => 'Your profile!',
+            'data' => Auth::user()
+        ]);
+    }
     /**
      * Update the user's profile information.
      */

@@ -107,14 +107,14 @@ const handleFileChange = (event) => {
                                 Name</label>
 
                             <input type="text" v-model="formData.name" name="name" id="name"
-                                class="bg-gray-50 border border-gray-300 text-white text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 "
+                                class="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 "
                                 :placeholder="props.data.data?.name" />
                         </div>
                         <div v-if="props.type === 'company'">
                             <label for="email" class="block mb-2 text-sm font-medium text-white ">Company's
                                 Email</label>
                             <input type="email" v-model="formData.email" name="email" id="email"
-                                class="bg-gray-50 border border-gray-300 text-white text-sm rounded-lg focus:ring-green-500 focus:border-green-200 block w-full p-2.5 "
+                                class="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-green-500 focus:border-green-200 block w-full p-2.5 "
                                 placeholder="company@example.com" />
                         </div>
 
@@ -130,7 +130,7 @@ const handleFileChange = (event) => {
 
                         <div v-if="props.type === 'service'">
                             <label for="countries"
-                                class="block mb-2 text-sm font-medium text-white ">Select
+                                class="block mb-2 text-sm font-medium text-gray-700 ">Select
                                 an
                                 option</label>
                             <select id="countries" v-model="formData.company_id"

@@ -21,14 +21,6 @@ class RegisteredUserController extends Controller
     public function store(Request $request): Response
     {
 
-        // return Response::api([
-        //     'status' => false,
-        //     'message' => 'All companies!',
-        //     'data' => $request->all()
-        //     // 'data' => Company::with(['users', 'services'])->get()
-        // ]);
-   
-
         $validated = $request->validate([
             'country_id' => ['required', 'exists:countries,id'],
             'name' => ['required', 'string', 'min:3', 'max:255'],
